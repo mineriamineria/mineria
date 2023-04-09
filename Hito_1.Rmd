@@ -15,7 +15,7 @@ editor_options:
 ---
 
 # Motivación
-Los dataset a trabajar se llaman \href{https://www.kaggle.com/datasets/whenamancodes/london-uk-airbnb-open-data}{Airbnb London}, este cuenta con una descripción (del año 2019) de la actividad y las métricas de los anuncios en Londres sobre los huéspedes y los anfitriones que han utilizado Airbnb para tener una mayor cantidad de opciones y posibilidades a la hora de buscar hospedaje. Y también \href{https://www.kaggle.com/datasets/arianazmoudeh/airbnbopendata}{Airbnb New York} que bajo el mismo estudio cuenta con información de la busqueda de hospedaje usando Airbnb pero en el año 2022 en NY. Ambos dataset contienen la información necesaria para saber más sobre los hosts, la disponibilidad geográfica, las métricas necesarias para hacer predicciones y sacar conclusiones.
+Los dataset a trabajar se llaman [Airbnb London](https://www.kaggle.com/datasets/whenamancodes/london-uk-airbnb-open-data), este cuenta con una descripción (del año 2019) de la actividad y las métricas de los anuncios en Londres sobre los huéspedes y los anfitriones que han utilizado Airbnb para tener una mayor cantidad de opciones y posibilidades a la hora de buscar hospedaje. Y también [Airbnb New York](https://www.kaggle.com/datasets/arianazmoudeh/airbnbopendata) que bajo el mismo estudio cuenta con información de la busqueda de hospedaje usando Airbnb pero en el año 2022 en NY. Ambos dataset contienen la información necesaria para saber más sobre los hosts, la disponibilidad geográfica, las métricas necesarias para hacer predicciones y sacar conclusiones.
 
 Se decide trabajar estos dos dataset en conjunto con el fin de poder comparar esta información en diferentes contextos y en ciudades de distintos paises.
 
@@ -23,7 +23,22 @@ La principal motivación para estudiar estos datasets es poder evaluar el mercad
 #Exploración de datos
 
 ```{r}
-#London <- read.table("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataLondon.csv", encoding = "UTF-8")
+dfLondon <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataLondon.csv", encoding = "UTF-8")
+dfNY <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataNY.csv", encoding = "UTF-8")
+```
+
+¿Existen blancos y nulos en el dataset de Nueva York?
+
+```{r}
+sapply(dfNY, function(x) sum(x==""))
+sapply(dfNY, function(x) sum(is.na(x)))
+```
+
+¿Existen blancos y nulos en el dataset de Londres?
+
+```{r}
+sapply(dfLondon, function(x) sum(x==""))
+sapply(dfLondon, function(x) sum(is.na(x)))
 ```
 
 #Preguntas y Problema
