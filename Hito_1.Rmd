@@ -27,6 +27,30 @@ dfLondon <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/m
 dfNY <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataNY.csv", encoding = "UTF-8")
 ```
 
+```{r}
+London <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataLondon.csv", encoding = "UTF-8")
+NewYork <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataNY.csv", encoding = "UTF-8")
+```
+
+```{r}
+head(London)
+head(NewYork)
+```
+
+```{r}
+str(London)
+```
+
+```{r}
+str(London)
+```
+
+```{r}
+# RESPUESTA
+dim(London) #dimesion de London
+dim(NewYork) #dimesion de NewYork
+```
+
 ¿Existen blancos y nulos en el dataset de Nueva York?
 
 ```{r}
@@ -41,5 +65,14 @@ sapply(dfLondon, function(x) sum(x==""))
 sapply(dfLondon, function(x) sum(is.na(x)))
 ```
 
-#Preguntas y Problema
+# Preguntas y Problemas
 
+- ¿Es posible predecir el precio basado en el vecindario y en el tipo de habitación?
+- ¿En base a qué factores existe una mayor variación de precios en cada ciudad?
+- ¿Qué tipo de habitaciones suelen ser preferidas?
+- ¿Qué áreas tiene alta demanda y poca oferta?¿Estas áreas podrían ser buenas opotunidades de inversión?
+- ¿Es posible hacer un estudio de las preferencias de los huéspedes?
+- ¿En qué épocas existe una mayor solicitud de alojamientos en cada ciudad?
+- ¿Cúal es la relación entre el número de reviews y la nota que reciben? 
+- ¿Existe alguna relación entre las reglas del Airbnb y la nota que reciben?
+- ¿Es un factor de relevancia si una cuenta está o no verificada?
