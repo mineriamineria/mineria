@@ -1,0 +1,30 @@
+---
+title: "Hito 1"
+author: "Catalina Gajardo, Romina Hernández, Francisca Ortega, Matías Rivero y Darlene Sobarzo"
+date: "Abril 2023"
+output:
+  html_document:
+    number_sections: yes
+    theme: spacelab
+    toc: yes
+  pdf_document:
+    toc: yes
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# Motivación
+Los dataset a trabajar se llaman \href{https://www.kaggle.com/datasets/whenamancodes/london-uk-airbnb-open-data}{Airbnb London}, este cuenta con una descripción (del año 2019) de la actividad y las métricas de los anuncios en Londres sobre los huéspedes y los anfitriones que han utilizado Airbnb para tener una mayor cantidad de opciones y posibilidades a la hora de buscar hospedaje. Y también \href{https://www.kaggle.com/datasets/arianazmoudeh/airbnbopendata}{Airbnb New York} que bajo el mismo estudio cuenta con información de la busqueda de hospedaje usando Airbnb pero en el año 2022 en NY. Ambos dataset contienen la información necesaria para saber más sobre los hosts, la disponibilidad geográfica, las métricas necesarias para hacer predicciones y sacar conclusiones.
+
+Se decide trabajar estos dos dataset en conjunto con el fin de poder comparar esta información en diferentes contextos y en ciudades de distintos paises.
+
+La principal motivación para estudiar estos datasets es poder evaluar el mercado de arriendos por parte de turistas, ver como se relacionan y cuáles son las características más relevantes a la hora de ver la relación atributo/precios. Esta información puede ser utilizada para muchos fines, desde la planificación de viajes, hasta la realización de inversiones en el mercado inmobiliario.   
+#Exploración de datos
+
+```{r}
+#London <- read.table("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataLondon.csv", encoding = "UTF-8")
+```
+
+#Preguntas y Problema
+
