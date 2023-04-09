@@ -27,28 +27,23 @@ dfLondon <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/m
 dfNY <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataNY.csv", encoding = "UTF-8")
 ```
 
+
 ```{r}
-London <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataLondon.csv", encoding = "UTF-8")
-NewYork <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataNY.csv", encoding = "UTF-8")
+head(dfLondon)
+head(dfNY)
 ```
 
 ```{r}
-head(London)
-head(NewYork)
+str(dfLondon)
 ```
 
 ```{r}
-str(London)
+str(dfNY)
 ```
 
 ```{r}
-str(London)
-```
-
-```{r}
-# RESPUESTA
-dim(London) #dimesion de London
-dim(NewYork) #dimesion de NewYork
+dim(dfLondon) #dimesion de London
+dim(dfNY) #dimesion de NewYork
 ```
 
 ¿Existen blancos y nulos en el dataset de Nueva York?
