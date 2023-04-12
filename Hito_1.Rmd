@@ -60,10 +60,16 @@ sapply(dfLondon, function(x) sum(x==""))
 sapply(dfLondon, function(x) sum(is.na(x)))
 ```
 
-¿Cuántos vecindarios existen en Nueva York?
+¿Cuántos vecindarios distintos existen en Nueva York?
 
 ```{r}
 length(unique(dfNY$neighbourhood))
+```
+
+¿Cuántos Vecindarios distintos existen en Londres?
+
+```{r}
+length(unique(dfLondon['neighbourhood']))
 ```
 
 # Preguntas y Problemas
