@@ -20,6 +20,7 @@ Los dataset a trabajar se llaman [Airbnb London](https://www.kaggle.com/datasets
 Se decide trabajar estos dos dataset en conjunto con el fin de poder comparar esta información en diferentes contextos y en ciudades de distintos paises.
 
 La principal motivación para estudiar estos datasets es poder evaluar el mercado de arriendos por parte de turistas, ver como se relacionan y cuáles son las características más relevantes a la hora de ver la relación atributo/precios. Esta información puede ser utilizada para muchos fines, desde la planificación de viajes, hasta la realización de inversiones en el mercado inmobiliario.   
+
 # Exploración de datos
 
 ```{r}
