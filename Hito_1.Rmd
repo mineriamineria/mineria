@@ -66,14 +66,6 @@ sapply(dfLondon, function(x) sum(is.na(x)))
 length(unique(dfNY$neighbourhood))
 ```
 
-¿Cuántos Vecindarios distintos existen en Londres?
-
-```{r}
-unique(dfLondon['neighbourhood'])
-```
-
-
->>>>>>> 94b7879320898f31253060b751fea62965d7c259
 # Preguntas y Problemas
 
 - ¿Es posible predecir el precio basado en el vecindario y en el tipo de habitación?
