@@ -19,8 +19,9 @@ Los dataset a trabajar se llaman [Airbnb London](https://www.kaggle.com/datasets
 
 Se decide trabajar estos dos dataset en conjunto con el fin de poder comparar esta información en diferentes contextos y en ciudades de distintos paises.
 
-La principal motivación para estudiar estos datasets es poder evaluar el mercado de arriendos por parte de turistas, ver como se relacionan y cuáles son las características más relevantes a la hora de ver la relación atributo/precios. Esta información puede ser utilizada para muchos fines, desde la planificación de viajes, hasta la realización de inversiones en el mercado inmobiliario.   
-#Exploración de datos
+La principal motivación para estudiar estos datasets es poder evaluar el mercado de arriendos por parte de turistas, ver como se relacionan y cuáles son las características más relevantes a la hora de ver la relación atributo/precios. Esta información puede ser utilizada para muchos fines, desde la planificación de viajes, hasta la realización de inversiones en el mercado inmobiliario.
+
+# Exploración de datos
 
 ```{r}
 dfLondon <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataLondon.csv", encoding = "UTF-8")
@@ -66,14 +67,23 @@ sapply(dfLondon, function(x) sum(is.na(x)))
 length(unique(dfNY$neighbourhood))
 ```
 
-¿Cuántos Vecindarios distintos existen en Londres?
+¿Cuántos vecindarios distintos existen en Londres?
 
 ```{r}
-unique(dfLondon['neighbourhood'])
+length(unique(dfLondon$neighbourhood))
 ```
 
+Datos del precio de las viviendas en Londres y Nueva York.
 
->>>>>>> 94b7879320898f31253060b751fea62965d7c259
+```{r}
+dfNY$price<-as.numeric(gsub("[\\$,]", "", dfNY$price))
+```
+```{r}
+summary(dfLondon$price)
+summary(dfNY$price)
+```
+Borrar las columnas que solo tienen nulos.
+
 # Preguntas y Problemas
 
 - ¿Es posible predecir el precio basado en el vecindario y en el tipo de habitación?
