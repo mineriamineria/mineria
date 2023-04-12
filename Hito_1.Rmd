@@ -76,5 +76,3 @@ sapply(dfLondon, function(x) sum(is.na(x)))
 - ¿Cúal es la relación entre el número de reviews y la nota que reciben? 
 - ¿Existe alguna relación entre las reglas del Airbnb y la nota que reciben?
 - ¿Es un factor de relevancia si una cuenta está o no verificada?
-
-holahola
