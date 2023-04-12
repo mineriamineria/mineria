@@ -20,7 +20,8 @@ Los dataset a trabajar se llaman [Airbnb London](https://www.kaggle.com/datasets
 Se decide trabajar estos dos dataset en conjunto con el fin de poder comparar esta información en diferentes contextos y en ciudades de distintos paises.
 
 La principal motivación para estudiar estos datasets es poder evaluar el mercado de arriendos por parte de turistas, ver como se relacionan y cuáles son las características más relevantes a la hora de ver la relación atributo/precios. Esta información puede ser utilizada para muchos fines, desde la planificación de viajes, hasta la realización de inversiones en el mercado inmobiliario.   
-#Exploración de datos
+
+# Exploración de datos
 
 ```{r}
 dfLondon <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataLondon.csv", encoding = "UTF-8")
@@ -60,7 +61,7 @@ sapply(dfLondon, function(x) sum(x==""))
 sapply(dfLondon, function(x) sum(is.na(x)))
 ```
 
-¿Cuántos vecindarios existen en Nueva York?
+¿Cuántos vecindarios distintos existen en Nueva York?
 
 ```{r}
 length(unique(dfNY$neighbourhood))
@@ -69,11 +70,9 @@ length(unique(dfNY$neighbourhood))
 ¿Cuántos Vecindarios distintos existen en Londres?
 
 ```{r}
-unique(dfLondon['neighbourhood'])
+length(unique(dfLondon$neighbourhood))
 ```
 
-
->>>>>>> 94b7879320898f31253060b751fea62965d7c259
 # Preguntas y Problemas
 
 - ¿Es posible predecir el precio basado en el vecindario y en el tipo de habitación?, esta pregunta es relevante para poder verificar si las preferencias de los huéspedes y host son suficientemente sólidas como para crear una predicción de precios para las diferentes características de los alojamiento. Esta información ayudaría a los usuarios a poder saber con mucha mayor anticipación los precios de los alojamientos que sean de su interés y que cumplan con las características necesarias.
