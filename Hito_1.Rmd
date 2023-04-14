@@ -1,6 +1,6 @@
 ---
 title: "Hito 1"
-author: "Catalina Gajardo, Romina Hernández, Francisca Ortega, Matías Rivero y Darlene Sobarzo"
+author: "Catalina Gajardo, Romina Hernández, Francisca Ortega, Matías Rivera y Darlene Sobarzo"
 date: "Abril 2023"
 output:
   html_document:
@@ -23,33 +23,39 @@ La principal motivación para estudiar estos datasets es poder evaluar el mercad
 
 # Exploración de datos
 
+Cargar los datos:
 ```{r}
 dfLondon <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataLondon.csv", encoding = "UTF-8")
 dfNY <- read.csv("https://raw.githubusercontent.com/mineriamineria/mineria/main/dataNY.csv", encoding = "UTF-8")
 ```
 
 
+Primer acercamiento a los datos:
+
 ```{r}
 head(dfLondon)
 head(dfNY)
 ```
-
+Tipod de Londres.
 ```{r}
 str(dfLondon)
 ```
-
+Tipos de Nueva York.
 ```{r}
 str(dfNY)
 ```
 
+Dimensiones de los datasets.
+
 ```{r}
-dim(dfLondon) #dimesion de London
-dim(dfNY) #dimesion de NewYork
+dim(dfLondon)
+dim(dfNY)
 ```
 
 ¿Existen blancos y nulos en el dataset de Nueva York?
 
 ```{r}
+#sapply(dfNY, function(x) sum(x==""|is.na(x)))
 sapply(dfNY, function(x) sum(x==""))
 sapply(dfNY, function(x) sum(is.na(x)))
 ```
@@ -73,25 +79,87 @@ length(unique(dfNY$neighbourhood))
 length(unique(dfLondon$neighbourhood))
 ```
 
-Datos del precio de las viviendas en Londres y Nueva York.
+Datos del precio de las viviendas en Londres y año de construcción en Nueva York.
 
 ```{r}
-dfNY$price<-as.numeric(gsub("[\\$,]", "", dfNY$price))
+#dfNY$price<-as.numeric(gsub("[\\$,]", "", dfNY$price))
+summary(dfLondon$price)
+summary(dfNY$Construction.year)
+```
+Boxplot de los precios en Londres
+
+```{r}
+library(dplyr)
+dfLondon<-group_by(dfLondon, room_type)
+summarise(dfLondon, length(room_type))
+dfLondon<-ungroup(dfLondon)
 ```
 ```{r}
-summary(dfLondon$price)
-summary(dfNY$price)
+#dfLondonReduced <- dfLondonReduced %>%
+ #group_by(room_type) %>%
+ #mutate(totalRoomType = length(room_type))
 ```
-Borrar las columnas que solo tienen nulos.
+
+Política de cancelación.
+
+```{r}
+dfNY<-group_by(dfNY, cancellation_policy)
+summarise(dfNY, length(cancellation_policy))
+dfNY<-ungroup(dfNY)
+```
+
+Gráfico Price vs. Room_Type.
+
+```{r}
+library(tidyverse)
+library(hrbrthemes)
+library(viridis)
+dfLondon %>%
+  ggplot(aes(x=room_type, y=price, fill=room_type)) +
+    geom_boxplot(outlier.shape = NA) +
+    scale_y_continuous(limits = quantile(dfLondon$price, c(0.05, 0.95))) +
+    scale_fill_viridis(discrete = TRUE, alpha=0.6, option="A") +
+    theme_ipsum() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    ggtitle("Dispersión del precio según el tipo de habitación") +
+    xlab("Tipo de habitación") +
+    ylab("Precio")
+```
+
+
+```{r}
+dfNY %>% filter(neighbourhood.group!="") %>% 
+  ggplot(aes(x=neighbourhood.group, y=review.rate.number, fill=neighbourhood.group)) +
+    geom_boxplot() +
+    #scale_y_continuous(limits = quantile(dfNY$Con, c(0.05, 0.95))) +
+    scale_fill_viridis(discrete = TRUE, alpha=0.6, option="A") +
+    theme_ipsum() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    ggtitle("Puntuación de la vivienda según el vecindario") +
+    xlab("Vecindario") +
+    ylab("Nota de review")
+```
 
 # Preguntas y Problemas
 
-- ¿Es posible predecir el precio basado en el vecindario y en el tipo de habitación?
-- ¿En base a qué factores existe una mayor variación de precios en cada ciudad?
-- ¿Qué tipo de habitaciones suelen ser preferidas?
-- ¿Qué áreas tiene alta demanda y poca oferta?¿Estas áreas podrían ser buenas opotunidades de inversión?
-- ¿Es posible hacer un estudio de las preferencias de los huéspedes?
-- ¿En qué épocas existe una mayor solicitud de alojamientos en cada ciudad?
-- ¿Cúal es la relación entre el número de reviews y la nota que reciben? 
-- ¿Existe alguna relación entre las reglas del Airbnb y la nota que reciben?
-- ¿Es un factor de relevancia si una cuenta está o no verificada?
+A través de la exploración de datos surgen interrogantes de posibles hipótesis o predicciones que esperamos de los datos al ver sus tendencias, en base a esto planteamos las siguientes interrogantes que esperamos responder con las herramientas que nos entregara el curso, para así dar conclusiones que servirán a les demás a la hora de tomar decisiones sobre hospedaje en estas ciudades.
+
+- ¿Es posible predecir el precio basado en el vecindario y en el tipo de habitación?, esta pregunta es relevante para poder verificar si las preferencias de los huéspedes y host son suficientemente sólidas como para crear una predicción de precios para las diferentes características de los alojamiento. Esta información ayudaría a los usuarios a poder saber con mucha mayor anticipación los precios de los alojamientos que sean de su interés y que cumplan con las características necesarias.
+- ¿En base a qué factores existe una mayor variación de precios en cada ciudad?, Esta información ayudaria que las personas sepan en que rangos de precios deberian estar un alojamiento con ciertas caracteristicas
+- ¿Qué tipo de habitaciones suelen ser preferidas?, esta información le entregaría a alguien que viaja una idea de que es más popular y que le gusta
+más al resto de las personas, sirviendole así como recomendación/sugerencia
+- ¿Qué áreas tiene alta demanda y poca oferta?¿Estas áreas podrían ser buenas opotunidades de inversión? esta información es de gran utilidad para las personas que pretender invertir en propiedades, ya que les dice las zonas donde el mercado es más beneficioso para sus ganancias.
+- ¿Es posible hacer un estudio de las preferencias de los huéspedes? , Con este estudio las empresas hoteleras podrian saber en que factores centrarse en mejorar para asi obtener una mayor cantidad de visitantes.
+- ¿En qué épocas existe una mayor solicitud de alojamientos en cada ciudad?,esta información le entregaría a alquien que quiere viajar, que temporadas
+son consideradas altas, para así planificarse para su viaje.
+- ¿Cúal es la relación entre el número de reviews y la nota que reciben? , esta pregunta puede ayudar a los host para saber si por las puntuaciones que les den, su alojamiento es más propenso a recibir más huéspedes.
+- ¿Existe alguna relación entre las reglas del Airbnb y la nota que reciben? Con esto podriamos obtener informacion valiosa para los arrendatarios, ya que asi verian que repercusiones tienen ciertas reglas a la cantidad de huespedes.
+- ¿Es un factor de relevancia si una cuenta está o no verificada?, esta información le entregaría a quien quiera arrendar ese hospedaje más información
+respecto a la veracidad de quien arrienda, entregándole así más seguridad.
+
