@@ -55,7 +55,6 @@ dim(dfNY)
 ¿Existen blancos y nulos en el dataset de Nueva York?
 
 ```{r}
-#sapply(dfNY, function(x) sum(x==""|is.na(x)))
 sapply(dfNY, function(x) sum(x==""))
 sapply(dfNY, function(x) sum(is.na(x)))
 ```
@@ -82,7 +81,6 @@ length(unique(dfLondon$neighbourhood))
 Datos del precio de las viviendas en Londres y año de construcción en Nueva York.
 
 ```{r}
-#dfNY$price<-as.numeric(gsub("[\\$,]", "", dfNY$price))
 summary(dfLondon$price)
 summary(dfNY$Construction.year)
 ```
@@ -93,11 +91,6 @@ library(dplyr)
 dfLondon<-group_by(dfLondon, room_type)
 summarise(dfLondon, length(room_type))
 dfLondon<-ungroup(dfLondon)
-```
-```{r}
-#dfLondonReduced <- dfLondonReduced %>%
- #group_by(room_type) %>%
- #mutate(totalRoomType = length(room_type))
 ```
 
 Política de cancelación.
@@ -134,7 +127,6 @@ dfLondon %>%
 dfNY %>% filter(neighbourhood.group!="") %>% 
   ggplot(aes(x=neighbourhood.group, y=review.rate.number, fill=neighbourhood.group)) +
     geom_boxplot() +
-    #scale_y_continuous(limits = quantile(dfNY$Con, c(0.05, 0.95))) +
     scale_fill_viridis(discrete = TRUE, alpha=0.6, option="A") +
     theme_ipsum() +
     theme(
