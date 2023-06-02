@@ -1,0 +1,36 @@
+Gráfico Price vs. Room_Type.
+
+
+```{r, warning=FALSE}
+dfLondon %>%
+  ggplot(aes(x=room_type, y=price, fill=room_type)) +
+    geom_boxplot(outlier.shape = NA) +
+    scale_y_continuous(limits = quantile(dfLondon$price, c(0.05, 0.95))) +
+    scale_fill_viridis(discrete = TRUE, alpha=0.6, option="A") +
+    theme_ipsum() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    ggtitle("Dispersión del precio según el tipo de habitación") +
+    xlab("Tipo de habitación") +
+    ylab("Precio")
+```
+
+
+Gráfico Review.rate.number vs. Neighbourhood.group.
+
+```{r, warning=FALSE}
+dfNY %>% filter(neighbourhood.group!="") %>% 
+  ggplot(aes(x=neighbourhood.group, y=review.rate.number, fill=neighbourhood.group)) +
+    geom_boxplot() +
+    scale_fill_viridis(discrete = TRUE, alpha=0.6, option="A") +
+    theme_ipsum() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=11)
+    ) +
+    ggtitle("Puntuación de la vivienda según el vecindario") +
+    xlab("Vecindario") +
+    ylab("Nota de review")
+```
